@@ -1,16 +1,17 @@
-# This is a sample Python script.
-#fdlgmdflkgdflkg
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import requests
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
 
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-
+api_url = "https://randomuser.me/api/"
+response = requests.get(api_url)   # Отправляем GET-запрос и сохраняем ответ в переменной response
+if response.status_code == 200:    # Если код ответа на запрос - 200, то смотрим, что пришло в ответе
+    response_dict = response.json()
+    result_data = response_dict["result"]
+    dat1 = result_data["gender"]
+    dat2 = result_data["name"]["first"]
+    dat3 = result_data["name"]["last"]
+    print("Гендер", dat1)
+    print("Имя", dat2)
+    print("Фамилия", dat3)
+else:
+    print(response.status_code)
