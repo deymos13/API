@@ -7,9 +7,9 @@ response = requests.get(api_url)   # Отправляем GET-запрос и с
 if response.status_code == 200:    # Если код ответа на запрос - 200, то смотрим, что пришло в ответе
     response_dict = response.json()
     result_data = response_dict["result"]
-    dat1 = result_data["gender"]
-    dat2 = result_data["name"]["first"]
-    dat3 = result_data["name"]["last"]
+    dat1 = result_data['results'][0]["gender"]
+    dat2 = result_data['results'][0]["name"]["first"]
+    dat3 = result_data['results'][0]["name"]["last"]
     print("Гендер", dat1)
     print("Имя", dat2)
     print("Фамилия", dat3)
